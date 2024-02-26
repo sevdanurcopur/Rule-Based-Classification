@@ -1,5 +1,5 @@
 #############################################
-#Calculating Lead Yield with Rule-Based Classification
+# Calculating Lead Yield with Rule-Based Classification
 #############################################
 
 ################# Before Application #####################
@@ -22,7 +22,7 @@
 
 
 #############################################
-# PROJE GÖREVLERİ
+# PROJECT TASKS
 #############################################
 
 #############################################
@@ -83,7 +83,7 @@ selected_col = ["COUNTRY", "SOURCE", "SEX", "AGE"]
 new_df = df.groupby(selected_col).agg({"PRICE": "mean"})
 
 #############################################
-# GÖREV 3: Let's sort the output by PRICE
+# Task 3: Let's sort the output by PRICE
 #############################################
 agg_df = new_df.sort_values(by=['PRICE'], ascending=False)
 
@@ -93,7 +93,7 @@ agg_df = new_df.sort_values(by=['PRICE'], ascending=False)
 agg_df.reset_index(inplace=True)
 
 #############################################
-# GÖREV 5: Lets Convert the AGE variable to a categorical variable and add it to agg_df.
+# Task 5: Lets Convert the AGE variable to a categorical variable and add it to agg_df.
 #############################################
 
 agg_df["AGE_CAT"] = pd.cut(agg_df["AGE"], bins=[0, 18, 23, 30, 40, 70],
@@ -103,7 +103,7 @@ mylabels = ['0_18', '19_23', '24_30', '31_40', '41_' + str(agg_df["AGE"].max())]
 pd.qcut(agg_df['AGE'], q=5, labels=mylabels)
 
 #############################################
-# Task 6:Define new level based customers and add them to the data set as a variable.
+# Task 6: Define new level based customers and add them to the data set as a variable.
 #############################################
 
 agg_df["customer_level_based"] = [(country + "_" + source + "_" + sex + "_" + age_cat).upper() for country, source, sex, age_cat in zip(agg_df["COUNTRY"], agg_df["SOURCE"], agg_df["SEX"], agg_df["AGE_CAT"])]
